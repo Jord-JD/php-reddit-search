@@ -1,10 +1,10 @@
 <?php
 
-namespace DivineOmega\RedditSearch\Tests;
+namespace JordJD\RedditSearch\Tests;
 
-use DivineOmega\BaseSearch\Interfaces\SearchResultInterface;
-use DivineOmega\RedditSearch\RedditSearcher;
-use DivineOmega\RedditSearch\RedditSearchResult;
+use JordJD\BaseSearch\Interfaces\SearchResultInterface;
+use JordJD\RedditSearch\RedditSearcher;
+use JordJD\RedditSearch\RedditSearchResult;
 use PHPUnit\Framework\TestCase;
 
 final class SearchTest extends TestCase

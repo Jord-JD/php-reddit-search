@@ -18,12 +18,12 @@
   },
   "autoload": {
     "psr-4": {
-      "DivineOmega\\RedditSearch\\": "src/"
+      "JordJD\\RedditSearch\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "DivineOmega\\RedditSearch\\Tests\\": "tests/Unit/"
+      "JordJD\\RedditSearch\\Tests\\": "tests/Unit/"
     }
   },
   "replace": {

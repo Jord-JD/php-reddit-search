@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\RedditSearch;
+namespace JordJD\RedditSearch;
 
-use DivineOmega\BaseSearch\Interfaces\SearcherInterface;
+use JordJD\BaseSearch\Interfaces\SearcherInterface;
 
 class RedditSearcher implements SearcherInterface
 {
