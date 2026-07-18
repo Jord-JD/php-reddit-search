@@ -33,7 +33,7 @@ class RedditSearcher implements SearcherInterface
     public function __construct(
         string $accessToken,
         string $userAgent,
-        callable $httpClient = null,
+        ?callable $httpClient = null,
         int $timeoutSeconds = 5
     ) {
         if (trim($accessToken) === '') {
