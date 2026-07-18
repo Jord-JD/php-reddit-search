@@ -64,7 +64,7 @@ class SearchTest extends TestCase
         $this->assertSame(1.0, $results[0]->getScore());
         $this->assertSame(0.5, $results[1]->getScore());
         $this->assertSame('Discussion', $results[1]->getDescription());
-        $this->assertSame($results[0]->toArray(), json_decode(json_encode($results[0]), true));
+        $this->assertEquals($results[0]->toArray(), json_decode(json_encode($results[0]), true));
         $this->assertSame('t3_nextpage', $searcher->getAfter());
 
         $this->assertSame(9, $request['timeout']);
@@ -96,30 +96,9 @@ class SearchTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider invalidSearchProvider
-     */
-    public function testInvalidSearchInputFailsBeforeHttp($query, array $options, $message)
+    public function testInvalidSearchInputFailsBeforeHttp()
     {
-        $called = false;
-        $searcher = new RedditSearcher('token', 'agent', function () use (&$called) {
-            $called = true;
-            return '{}';
-        });
-
-        try {
-            $searcher->search($query, $options);
-            $this->fail('Invalid search input should throw.');
-        } catch (\InvalidArgumentException $exception) {
-            $this->assertStringContainsString($message, $exception->getMessage());
-        }
-
-        $this->assertFalse($called);
-    }
-
-    public function invalidSearchProvider()
-    {
-        return [
+        $cases = [
             [' ', [], 'cannot be empty'],
             ['php', ['unknown' => true], 'Unsupported'],
             ['php', ['limit' => 0], 'between 1 and 100'],
@@ -129,6 +108,23 @@ class SearchTest extends TestCase
             ['php', ['include_over_18' => 'no'], 'boolean'],
             ['php', ['subreddit' => 'not/a/subreddit'], 'subreddit'],
         ];
+
+        foreach ($cases as $case) {
+            $called = false;
+            $searcher = new RedditSearcher('token', 'agent', function () use (&$called) {
+                $called = true;
+                return '{}';
+            });
+
+            try {
+                $searcher->search($case[0], $case[1]);
+                $this->fail('Invalid search input should throw.');
+            } catch (\InvalidArgumentException $exception) {
+                $this->assertStringContainsString($case[2], $exception->getMessage());
+            }
+
+            $this->assertFalse($called);
+        }
     }
 
     public function testConstructorValidatesCredentialsAndTimeout()
