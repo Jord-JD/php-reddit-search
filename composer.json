@@ -10,11 +10,11 @@
     }
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
-    "jord-jd/php-base-search": "^4.0"
+    "php": ">=7.1",
+    "jord-jd/php-base-search": "^4.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.6"
+    "phpunit/phpunit": "^7.5||^9.6||^10.5||^11.5||^12.5"
   },
   "autoload": {
     "psr-4": {
@@ -31,7 +31,12 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0-dev"
+      "dev-master": "2.0-dev"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "kylekatarnls/update-helper": false
     }
   }
 }
